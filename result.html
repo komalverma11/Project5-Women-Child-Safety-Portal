@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Result </title>
+  <style>
+    /* Add your styles here */
+    .result-container {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 40px auto;
+      max-width: 300px;
+      border: 2px solid black;
+      border-radius: 20px;
+      background: #f9f9f9;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+    #result img{
+      width:90%;
+     
+    }
+   .image{
+     display:flex;
+     align-items: center;
+     justify-content: center;
+   }
+
+    p {
+      font-size: 12px;
+      margin: 10px 0;
+    
+    }
+    #result a {
+      background:red;
+      text-decoration:none;
+      border:2px solid red;
+      padding:5px 8px;
+      border-radius:20px;
+      color: white;
+      font-size: 15px;
+      display: flex;
+      align-self: right;
+      justify-self: flex-end;
+    }
+    h2 {
+      font-weight: bold;
+      color: white;
+      background: green;
+      border-radius: 40%;
+      text-align: center;
+      padding-top:5px;
+      padding-bottom: 5px;
+      font-size: 25px;
+    }
+    a {
+      border: 2px solid red ;
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      background: red;
+      border-radius: 8px;
+      padding-right: 4px;
+    }
+    body {
+      background-image: url("https://i.ibb.co/hKFKBHY/Screenshot-20250120-143103-2.png");
+    }
+  </style>
+</head>
+
+<body>
+  <a href="index.html">👈Back</a>
+  <h2> Result</h2>
+  <div class="result-container">
+   
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const resultContainer = document.getElementById("result");
+    const districtData = JSON.parse(localStorage.getItem("selectedDistrictData"));
+
+    if (districtData && districtData.length > 0) {
+      districtData.forEach((item) => {
+        const html = `
+          <div>
+          <div class="image">
+            <img src="${item.image}" alt="${item.name}">
+            </div>
+            <p><strong>Name:</strong> ${item.name}</p>
+            <p><strong>Designation:</strong> ${item.designation}</p>
+            <p><strong>Phone:</strong> ${item.phone}</p>
+            <p><strong>Address:</strong> ${item.address}</p>
+            <a href="${item.link}" target="_blank">Click more</a>
+          </div>`
+        ;
+        resultContainer.innerHTML += html;
+      });
+    } else {
+      resultContainer.innerHTML = "<p>No data available.</p>";
+    }
+  </script>
+</body>
+
+</html>
